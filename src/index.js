@@ -5,7 +5,7 @@ import Input from './components/InputComponent';
 import * as serviceWorker from './serviceWorker';
 
 let propsValues = {
-    title: "Список смартфонов",
+    title: "Multiselect",
     items: [
         'node.js',
         'javascript',
