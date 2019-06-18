@@ -70,7 +70,7 @@ class Input extends React.Component {
         }
 
         adaptiveInput(e) {
-            if(e.target.value != '') {
+            if(e.target.value !== '') {
             let changeWidthInput = +e.target.value.length * 10;
             this.setState({
                 widthInput: changeWidthInput
