@@ -21,7 +21,7 @@ class Input extends React.Component {
         filterList(e) {
             //фильтруем введённое значение  
             let filterList = this.props.data.items.filter(function (item) {
-                return item.toLowerCase().search(e.target.value.replace(/[/\\/]/g, '').trim().toLowerCase()) !== -1;
+                return item.toLowerCase().search(e.target.value.replace(/[/\\/^'[']/g, '').trim().toLowerCase()) !== -1;
             });
             //обновляем сосотояние массива
             this.setState({
