@@ -1,16 +1,18 @@
 .select {
-    width: 500px;
-    margin: 0 auto;
-.input {
- &__selection{
+  width: 500px;
+  margin: 0 auto;
+
+  &__selection {
     display: flex;
     flex-wrap: wrap;
+
     input {
-        border: none;
-        min-width: 20px !important;
-        height: 19px;
+      border: none;
+      min-width: 120px !important;
+      height: 19px;
     }
   }
+
   &__wrapper {
     display: flex;
     width: 500px;
@@ -18,45 +20,48 @@
     padding: 7px;
     cursor: text;
   }
-  &__selection  {
-      div{
-    border: 1px #46bbff solid;
-    padding: 0 15px 0 0;
-    color: #46bbff;
-    line-height: 0;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    border-radius: 3px;
+
+  &__selection {
+    div {
+      border: 1px #46bbff solid;
+      padding: 0 15px 0 0;
+      color: #46bbff;
+      line-height: -1;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+    }
   }
 }
-}
+
 button {
-    border: none;
-    background: #46bbff4a;
-    cursor: pointer;
+  border: none;
+  background: #46bbff4a;
+  cursor: pointer;
 
 }
-} 
+
 ul {
-    min-height: 48px;
-    overflow-y: scroll;
-    width: 100%;
-    height: auto;
-    max-height: 150px;
-    padding-left: 16px;
-    margin: 0;
-    li {
-        cursor: pointer;
-        list-style: none;
-        line-height: 2;
-      }
+  min-height: 48px;
+  overflow-y: scroll;
+  width: 100%;
+  height: auto;
+  background: #bfeaff;
+  max-height: 150px;
+  padding-left: 16px;
+  margin: 0;
+
+  li {
+    cursor: pointer;
+    list-style: none;
+    line-height: 2;
+  }
 }
 
-  input {  
-    outline: none;
-  }
-  
-  
-  .list {
-    display: none;
-  }
+input {
+  outline: none;
+}
+
+.list {
+  display: none;
+}
