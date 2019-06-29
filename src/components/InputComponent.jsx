@@ -33,15 +33,15 @@ class Input extends React.Component {
                     show: hideList
                 });
             } else {
-            //обновляем сосотояние массива
-            let showList = this.state.show;
-            showList = 'block';
-            this.setState({
-                items: filterList,
-                show: showList
-            });
+                //обновляем сосотояние массива
+                let showList = this.state.show;
+                showList = 'block';
+                this.setState({
+                    items: filterList,
+                    show: showList
+                });
             }
-            if(e.target.value == '') {
+            if (e.target.value == '') {
                 let hideList = this.state.show;
                 hideList = 'none';
                 this.setState({
@@ -80,27 +80,27 @@ class Input extends React.Component {
 
             this.input.current.value = ''
             this.input.current.focus();
-            if(this.state.selection.length != 0) {
+            if (this.state.selection.length != 0) {
                 this.input.current.placeholder = ''
             }
         }
 
         adaptiveInput(e) {
-            if(e.target.value !== '') {
-            let changeWidthInput = +e.target.value.length * 10;
-            this.setState({
-                widthInput: changeWidthInput
-            });
-            if (changeWidthInput >= 500) {
+            if (e.target.value !== '') {
+                let changeWidthInput = +e.target.value.length * 10;
                 this.setState({
-                    widthInput: 500
+                    widthInput: changeWidthInput
                 });
-            }
-            if(this.state.selection.length === 0) {
-                e.target.placeholder = 'Select items'
+                if (changeWidthInput >= 500) {
+                    this.setState({
+                        widthInput: 500
+                    });
+                }
+                if (this.state.selection.length === 0) {
+                    e.target.placeholder = 'Select items'
+                }
             }
         }
-    }
 
         focusInput() {
             //устанавливаем фокус на input при клике на обертку 
@@ -130,18 +130,18 @@ class Input extends React.Component {
                     // обработка одного значения
                     if (valueInputArray.length === 1) {
                         //проверка введеного значения в исходном массиве         
-                            let indexArray = this.props.data.items.map((item, index) => {
-                                if (valueInputArray.join('') === item) {
-                                    return index
-                                }
-                            })
-                            let indexDelete = parseInt(indexArray.join(''));
-                            let arrayDelete = this.props.data.items;
-                            arrayDelete.splice(indexDelete, 1)
-                            //обновляем состояние, если в массиве значение имеется
-                            this.setState({
-                                items: arrayDelete
-                            })
+                        let indexArray = this.props.data.items.map((item, index) => {
+                            if (valueInputArray.join('') === item) {
+                                return index
+                            }
+                        })
+                        let indexDelete = parseInt(indexArray.join(''));
+                        let arrayDelete = this.props.data.items;
+                        arrayDelete.splice(indexDelete, 1)
+                        //обновляем состояние, если в массиве значение имеется
+                        this.setState({
+                            items: arrayDelete
+                        })
                         //добавляем введённое значение в массив selection
                         let arraySelect = this.state.selection;
                         if (arraySelect.includes(valueInputArray.join(''))) {
@@ -155,12 +155,12 @@ class Input extends React.Component {
                                 selection: arraySelect,
                                 items: this.props.data.items
                             })
-                        
+
                         }
                         this.selection.current.appendChild(this.input.current);
                         this.input.current.focus();
                         this.input.current.value = '';
-                        if(this.state.selection.length != 0) {
+                        if (this.state.selection.length != 0) {
                             this.input.current.placeholder = ''
                         }
 
@@ -196,7 +196,7 @@ class Input extends React.Component {
                         })
                         this.input.current.focus();
                         this.input.current.value = '';
-                        if(this.state.selection.length != 0) {
+                        if (this.state.selection.length != 0) {
                             this.input.current.placeholder = ''
                         }
                     }
@@ -224,11 +224,11 @@ class Input extends React.Component {
                     show: hideList
                 })
                 // this.refs.input.value = ' ';
-                if(this.state.selection.length === 0) {
+                if (this.state.selection.length === 0) {
                     e.target.placeholder = 'Select items'
                 }
             }
-            if(this.state.selection.length !== 0)  {
+            if (this.state.selection.length !== 0) {
                 e.target.placeholder = ''
             }
         }
