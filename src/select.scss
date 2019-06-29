@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 .select {
   width: 500px;
   margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
 
   &__selection {
     display: flex;
@@ -10,6 +13,7 @@
       border: none;
       min-width: 120px !important;
       height: 19px;
+      
     }
   }
 
@@ -19,39 +23,62 @@
     border: 1px #cbcbcb solid;
     padding: 7px;
     cursor: text;
+    padding-bottom: 0;
+    border-radius: 3px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
   }
 
   &__selection {
     div {
-      border: 1px #46bbff solid;
       padding: 0 15px 0 0;
-      color: #46bbff;
+      color: #f87171;
       line-height: -1;
       margin-right: 10px;
       margin-bottom: 10px;
       border-radius: 3px;
+      display: flex;
+      align-items: center;
     }
   }
 }
 
 button {
   border: none;
-  background: #46bbff4a;
+  background:url('img/trash.png');
+  background-size: cover;
+  height: 19px;
+  width: 19px;
+  margin-right: 2px;
   cursor: pointer;
 
 }
 
 ul {
-  min-height: 48px;
+  min-height: auto;
+  overflow-x: hidden;
   overflow-y: scroll;
+  -moz-appearance: none !important;
   width: 100%;
   height: auto;
-  background: #bfeaff;
+  background: #f87171;
   max-height: 150px;
-  padding-left: 16px;
+  padding-left: 14px;
   margin: 0;
+  border: 1px solid #f87171;
+  border-top: none;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color:white; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #909090; 
+}
 
   li {
+    color: white;
     cursor: pointer;
     list-style: none;
     line-height: 2;

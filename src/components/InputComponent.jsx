@@ -10,25 +10,38 @@ class Input extends React.Component {
                 selection: [],
                 show: 'none'
             };
+            this.selection = React.createRef();
+            this.input = React.createRef();
             this.filterList = this.filterList.bind(this);
             this.adaptiveInput = this.adaptiveInput.bind(this);
             this.focusInput = this.focusInput.bind(this);
             this.addItem = this.addItem.bind(this);
             this.deleteItem = this.deleteItem.bind(this);
             this.addItemList = this.addItemList.bind(this);
+
         }
 
         filterList(e) {
-            //фильтруем введённое значение  
-            let filterList = this.props.data.items.filter(function (item) {
+            const filterList = this.props.data.items.filter(function (item) {
                 return item.toLowerCase().search(e.target.value.replace(/[/\\/^'[']/g, '').trim().toLowerCase()) !== -1;
-            });
-            //обновляем сосотояние массива
-            this.setState({
-                items: filterList,
             });
             // cкрываем панель автодополнения если совпадений не найдено
             if (filterList.length === 0) {
+                let hideList = this.state.show;
+                hideList = 'none';
+                this.setState({
+                    show: hideList
+                });
+            } else {
+            //обновляем сосотояние массива
+            let showList = this.state.show;
+            showList = 'block';
+            this.setState({
+                items: filterList,
+                show: showList
+            });
+            }
+            if(e.target.value == '') {
                 let hideList = this.state.show;
                 hideList = 'none';
                 this.setState({
@@ -65,8 +78,11 @@ class Input extends React.Component {
                 show: hideList
             });
 
-            this.refs.input.value = ' '
-            this.refs.input.focus();
+            this.input.current.value = ''
+            this.input.current.focus();
+            if(this.state.selection.length != 0) {
+                this.input.current.placeholder = ''
+            }
         }
 
         adaptiveInput(e) {
@@ -81,14 +97,14 @@ class Input extends React.Component {
                 });
             }
             if(this.state.selection.length === 0) {
-                e.target.placeholder = 'Select your favourites'
+                e.target.placeholder = 'Select items'
             }
         }
     }
 
         focusInput() {
             //устанавливаем фокус на input при клике на обертку 
-            this.refs.input.focus();
+            this.input.current.focus();
         }
 
         addItem(e) {
@@ -101,7 +117,7 @@ class Input extends React.Component {
                 });
             }
             if (e.keyCode === 13) {
-                if (this.refs.input.value.trim() === '') {
+                if (this.input.current.value.trim() === '') {
                     alert('Введите значение')
                     let List = this.state.show;
                     List = 'none';
@@ -109,17 +125,13 @@ class Input extends React.Component {
                         show: List
                     });
                 } else {
-                    const valueInput = this.refs.input.value.trim();
+                    const valueInput = this.input.current.value.trim();
                     const valueInputArray = valueInput.match(/"[^"]*"|'[^']*'|[^,]+/g);
+                    // обработка одного значения
                     if (valueInputArray.length === 1) {
                         //проверка введеного значения в исходном массиве         
-                        let itemArray = this.state.items.map((item) => {
-                            return item.replace(',', ' ')
-                        })
-                        let itemDelete = itemArray.join('');
-                        if (valueInputArray.join('') === itemDelete) {
                             let indexArray = this.props.data.items.map((item, index) => {
-                                if (itemDelete === item) {
+                                if (valueInputArray.join('') === item) {
                                     return index
                                 }
                             })
@@ -130,7 +142,6 @@ class Input extends React.Component {
                             this.setState({
                                 items: arrayDelete
                             })
-                        }
                         //добавляем введённое значение в массив selection
                         let arraySelect = this.state.selection;
                         if (arraySelect.includes(valueInputArray.join(''))) {
@@ -146,16 +157,19 @@ class Input extends React.Component {
                             })
                         
                         }
-                        this.refs.selection.appendChild(this.refs.input);
-                        this.refs.input.focus();
-                        this.refs.input.value = '';
+                        this.selection.current.appendChild(this.input.current);
+                        this.input.current.focus();
+                        this.input.current.value = '';
+                        if(this.state.selection.length != 0) {
+                            this.input.current.placeholder = ''
+                        }
 
                     } 
                     else if (valueInputArray.length > 0) {
                         //обрабатывание для двух и более значений
                         let arraySelect = this.state.selection;
                         let addSelectionArray = arraySelect.concat(valueInputArray)
-                        this.refs.selection.appendChild(this.refs.input);
+                        this.selection.current.appendChild(this.input.current);
                         let deleteQuotes = addSelectionArray.map((item) => {
                             let a = item.replace(/['"«»]/g, '')
                             return a.replace(',', ' ')
@@ -180,8 +194,11 @@ class Input extends React.Component {
                                 selection: filterStateSelection
                             })
                         })
-                        this.refs.input.focus();
-                        this.refs.input.value = '';
+                        this.input.current.focus();
+                        this.input.current.value = '';
+                        if(this.state.selection.length != 0) {
+                            this.input.current.placeholder = ''
+                        }
                     }
                     //скрываем панель автодополения
                     let hideList = this.state.show;
@@ -192,7 +209,7 @@ class Input extends React.Component {
                 }
             }
             //удаляем пункт при нажатии на backspace
-            if (this.refs.input.value.length < 1 && e.keyCode === 8 && this.state.selection.length !== 0) {
+            if (this.input.current.value.length < 1 && e.keyCode === 8 && this.state.selection.length !== 0) {
                 let deleteItemSelection = this.state.selection;
                 let lastItemSelection = this.state.selection[this.state.selection.length - 1];
                 let arrayDelete = this.props.data.items;
@@ -206,9 +223,9 @@ class Input extends React.Component {
                     items: arrayDelete,
                     show: hideList
                 })
-                this.refs.input.value = ' ';
+                // this.refs.input.value = ' ';
                 if(this.state.selection.length === 0) {
-                    e.target.placeholder = 'Select your favourites'
+                    e.target.placeholder = 'Select items'
                 }
             }
             if(this.state.selection.length !== 0)  {
@@ -246,17 +263,18 @@ class Input extends React.Component {
             });
         }
   render() {
+    
       return(
           <div className='select'>         
               <h2>{this.props.data.title}</h2>
               <div onClick={this.focusInput} className="select__wrapper">
-              <div className="select__selection" ref='selection'>
+              <div className="select__selection" ref={this.selection}>
                   {
                       this.state.selection.map((item, index) => {
-                        return <div className="select__selection"  key={index}><button onClick={this.deleteItem} value={item}>X</button>{item}</div>
+                        return <div  key={index}><button onClick={this.deleteItem} value={item}></button>{item}</div>
                     }) 
                   }
-              <input  placeholder="Select your favourites" onKeyDown={this.addItem} style={{width:this.state.widthInput + 'px'}} onKeyUp={this.adaptiveInput} ref='input' onChange={this.filterList} />
+              <input  placeholder="Select items" onKeyDown={this.addItem} style={{width:this.state.widthInput + 'px'}} onKeyUp={this.adaptiveInput} ref={this.input} onChange={this.filterList} />
               </div>
               </div>
               <ul ref='list' style={{display:this.state.show}}>
@@ -269,5 +287,4 @@ class Input extends React.Component {
           </div>);
   }
 }
-
 export default Input;

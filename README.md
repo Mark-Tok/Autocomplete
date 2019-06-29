@@ -21,3 +21,10 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 
+### Screen
+![Image alt](https://github.com/Mark-Tok/MultiSelect/raw/master/screen/screen1.png)
+
+__________
+
+![Image alt](https://github.com/Mark-Tok/MultiSelect/raw/master/screen/screen2.png)
+

@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "beautify-scrollbar": "^1.0.8",
     "react": "^16.8.6",
+    "react-custom-scroll": "^4.1.0",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
