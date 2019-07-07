@@ -2,27 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Input from './components/InputComponent';
 import * as serviceWorker from './serviceWorker';
-
-let propsValues = {
-    title: "Multiselect",
-    items: [
-        'node.js',
-        'javascript',
-        'json',
-        'react.js',
-        'REST API',
-        'electron.js',
-        'jsx',
-        'ajax',
-        'html',
-        'mongodb',
-        'NOSQL',
-        'sass',
-        'less',
-        'gulp',
-        'webpack'
-    ]
-  };
+import propsValues from './array'
 
 ReactDOM.render(<Input data={propsValues} />, document.getElementById('root'));
 
