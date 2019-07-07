@@ -18,7 +18,6 @@ class Input extends React.Component {
             this.addItem = this.addItem.bind(this);
             this.deleteItem = this.deleteItem.bind(this);
             this.addItemList = this.addItemList.bind(this);
-
         }
 
         filterList(e) {
@@ -262,8 +261,8 @@ class Input extends React.Component {
                 show: hideList
             });
         }
-  render() {
-    
+
+  render() {  
       return(
           <div className='select'>         
               <h2>{this.props.data.title}</h2>
@@ -284,7 +283,8 @@ class Input extends React.Component {
                       })
                   }
               </ul>
-          </div>);
-  }
+        </div>
+        );
+    }
 }
 export default Input;

@@ -1,4 +1,10 @@
 
+in folder 
+
+### `npm install`
+
+then
+
 ### `npm run start`
 
 <br>
