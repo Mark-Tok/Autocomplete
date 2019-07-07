@@ -32,6 +32,6 @@ __________
 
 ![Image alt](https://github.com/Mark-Tok/MultiSelect/raw/master/screen/ex-array.png)
 
-![Image alt](https://github.com/Mark-Tok/MultiSelect/raw/master/screen/ex-array2.png)
+![Image alt](https://github.com/Mark-Tok/MultiSelect/raw/master/screen/ex-array1.png)
 
 
