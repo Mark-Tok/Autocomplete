@@ -1,5 +1,5 @@
 let propsValues = {
-    title: "Multiselect",
+    title: "Autocomplete Select",
     items: [
         'node.js',
         'javascript',

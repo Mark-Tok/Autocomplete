@@ -12,44 +12,32 @@ class Input extends React.Component {
             };
             this.selection = React.createRef();
             this.input = React.createRef();
-            this.filterList = this.filterList.bind(this);
-            this.adaptiveInput = this.adaptiveInput.bind(this);
-            this.focusInput = this.focusInput.bind(this);
-            this.addItem = this.addItem.bind(this);
-            this.deleteItem = this.deleteItem.bind(this);
-            this.addItemList = this.addItemList.bind(this);
         }
 
-        filterList(e) {
+        filterList = (e) => {
             const filterList = this.props.data.items.filter(function (item) {
                 return item.toLowerCase().search(e.target.value.replace(/[/\\/^'[']/g, '').trim().toLowerCase()) !== -1;
             });
             // cкрываем панель автодополнения если совпадений не найдено
             if (filterList.length === 0) {
-                let hideList = this.state.show;
-                hideList = 'none';
-                this.setState({
-                    show: hideList
+                this.setState( {
+                    show: 'none'
                 });
             } else {
                 //обновляем сосотояние массива
-                let showList = this.state.show;
-                showList = 'block';
                 this.setState({
                     items: filterList,
-                    show: showList
+                    show: 'block'
                 });
             }
-            if (e.target.value == '') {
-                let hideList = this.state.show;
-                hideList = 'none';
+            if (e.target.value === '') {
                 this.setState({
-                    show: hideList
+                    show: 'none'
                 });
             }
         }
 
-        addItemList(e) {
+        addItemList = (e) => {
             //добавляем элемент по клику с панели автодополнения
             let arrayIndexDelete = this.props.data.items.map((item, index) => {
                 if (e.target.textContent === item) {
@@ -65,8 +53,6 @@ class Input extends React.Component {
             let itemDelete = deleteItem.join('').trim();
             let indexDelete = parseInt(arrayIndexDelete.join(''));
             let deleteItemSelection = this.props.data.items;
-            let hideList = this.state.show;
-            hideList = 'none';
 
             arrayDelete.push(itemDelete)
             deleteItemSelection.splice(indexDelete, 1);
@@ -74,17 +60,17 @@ class Input extends React.Component {
             this.setState({
                 items: deleteItemSelection,
                 selection: arrayDelete,
-                show: hideList
+                show: 'none'
             });
 
             this.input.current.value = ''
             this.input.current.focus();
-            if (this.state.selection.length != 0) {
+            if (this.state.selection.length !== 0) {
                 this.input.current.placeholder = ''
             }
         }
 
-        adaptiveInput(e) {
+        adaptiveInput = (e) => {
             if (e.target.value !== '') {
                 let changeWidthInput = +e.target.value.length * 10;
                 this.setState({
@@ -101,27 +87,23 @@ class Input extends React.Component {
             }
         }
 
-        focusInput() {
+        focusInput = () => {
             //устанавливаем фокус на input при клике на обертку 
             this.input.current.focus();
         }
 
-        addItem(e) {
+        addItem = (e) => {
             //добавляем введенные пункты из строки
             if (e.keyCode !== 8) {
-                let showList = this.state.show;
-                showList = 'block';
                 this.setState({
-                    show: showList
+                    show: 'block'
                 });
             }
             if (e.keyCode === 13) {
                 if (this.input.current.value.trim() === '') {
                     alert('Введите значение')
-                    let List = this.state.show;
-                    List = 'none';
                     this.setState({
-                        show: List
+                        show: 'none'
                     });
                 } else {
                     const valueInput = this.input.current.value.trim();
@@ -159,7 +141,7 @@ class Input extends React.Component {
                         this.selection.current.appendChild(this.input.current);
                         this.input.current.focus();
                         this.input.current.value = '';
-                        if (this.state.selection.length != 0) {
+                        if (this.state.selection.length !== 0) {
                             this.input.current.placeholder = ''
                         }
 
@@ -195,15 +177,13 @@ class Input extends React.Component {
                         })
                         this.input.current.focus();
                         this.input.current.value = '';
-                        if (this.state.selection.length != 0) {
+                        if (this.state.selection.length !== 0) {
                             this.input.current.placeholder = ''
                         }
                     }
                     //скрываем панель автодополения
-                    let hideList = this.state.show;
-                    hideList = 'none';
                     this.setState({
-                        show: hideList
+                        show: 'none'
                     })
                 }
             }
@@ -214,13 +194,11 @@ class Input extends React.Component {
                 let arrayDelete = this.props.data.items;
                 arrayDelete.push(lastItemSelection)
                 deleteItemSelection.pop();
-                let hideList = this.state.show;
-                hideList = 'none';
 
                 this.setState({
                     selection: deleteItemSelection,
                     items: arrayDelete,
-                    show: hideList
+                    show: 'none'
                 })
                 // this.refs.input.value = ' ';
                 if (this.state.selection.length === 0) {
@@ -232,7 +210,7 @@ class Input extends React.Component {
             }
         }
 
-        deleteItem(e) {
+        deleteItem = (e) => {
             //удаляем пункт при клике 
             let arrayIndexDelete = this.state.selection.map((item, index) => {
                 if (e.target.value === item) {
@@ -252,13 +230,10 @@ class Input extends React.Component {
             let arrayDelete = this.state.selection;
             arrayDelete.splice(indexDelete, 1);
 
-            let hideList = this.state.show;
-            hideList = 'none';
-
             this.setState({
                 items: panelArray,
                 selection: arrayDelete,
-                show: hideList
+                show: 'none'
             });
         }
 
