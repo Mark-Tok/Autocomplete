@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Input from './components/InputComponent';
+import Input from './components/index';
 import * as serviceWorker from './serviceWorker';
 import propsValues from './array'
 
