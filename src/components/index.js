@@ -4,7 +4,7 @@ import isNaN from "lodash/isNaN";
 import PropTypes from "prop-types";
 import "../select.scss";
 
-function Autocomplete({ data }) {
+function Autocomplete({ data, onChange }) {
   const [items, setItems] = useState(null);
   const [widthInput, setWidthInput] = useState(120);
   const [selection, setSelection] = useState([]);
@@ -215,6 +215,10 @@ function Autocomplete({ data }) {
     }
   }, []);
 
+  useEffect(() => {
+    onChange(selection)
+  }, [selection])
+
   return (
     <div className="select">
       <h2>Autocomplete Select</h2>
@@ -266,5 +270,9 @@ Autocomplete.propTypes = {
    */
   data: PropTypes.array,
 };
+
+Autocomplete.defaultProps = {
+  onChange: () => {}
+}
 
 export default Autocomplete;
