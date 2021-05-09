@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "beautify-scrollbar": "^1.0.8",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "react": "^16.8.6",
     "react-custom-scroll": "^4.1.0",
     "react-dom": "^16.8.6",
