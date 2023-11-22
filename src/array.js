@@ -12,7 +12,6 @@ let propsValues = [
   "NOSQL",
   "sass",
   "less",
-  "gulp",
   "webpack",
 ];
 export default propsValues;
